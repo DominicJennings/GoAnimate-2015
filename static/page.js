@@ -147,7 +147,6 @@ module.exports = function (req, res, url) {
 			                has_asset_bg: "0",
 			                has_asset_char: "0",
 					clientThemePath: process.env.CLIENT_URL + "/<client_theme>",
-					themeId: "family",
                                         gocoins: 100,
 			                page: "",
 			                retut: 0,
