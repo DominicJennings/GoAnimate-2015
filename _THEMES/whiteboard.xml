@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <theme id="whiteboard" name="Whiteboard Animation" cc_theme_id="whiteboard">
 	<background id="g4b_bg001.swf" name="Plain" enable="Y" default="Y" is_premium="N" aid="23025" money="0" sharing="0"/>
-	<compositebg id="cbg_055" name="Office" enable="Y" default="N" thumb="cbg_055.png" display_order="1" is_premium="N" money="0" sharing="0" aid="23073">
+	<compositebg id="cbg_055" name="Office" enable="Y" default="Y" thumb="cbg_055.png" display_order="1" is_premium="N" money="0" sharing="0" aid="23073">
 		<bg id="cbg_055_BG01" index="0">
 			<file>whiteboard.g4b_bg001.swf</file>
 		</bg>

@@ -3,22 +3,22 @@
 	<fvm_meta theme_code="" is_biz="0" />
 	<theme id="custom" name="Comedy World" thumb="" col="1"/>
 	<theme id="politics2" name="White Houserz" thumb="" col="1"/>
-	<theme id="anime" name="Anime" thumb="" cc_theme_id="anime" col="1"/>
-	<theme id="ninjaanime" name="Ninja Anime" thumb="" cc_theme_id="ninjaanime" col="1"/>
-	<theme id="spacecitizen" name="Space Citizens" thumb="" cc_theme_id="spacecitizen" col="1"/>
+	<theme id="anime" name="Anime" thumb="" col="1"/>
+	<theme id="ninjaanime" name="Ninja Anime" thumb="" col="1"/>
+	<theme id="spacecitizen" name="Space Citizens" thumb="" col="1"/>
 	<theme id="toonadv" name="Toon Adventure" enable="N" col="1"/>
 	<theme id="common" name="Common" thumb="matchboy-stand.swf"/>
-	<theme id="business" name="Business Friendly" thumb="" cc_theme_id="business" col="2"/>
+	<theme id="business" name="Business Friendly" thumb="" col="2"/>
 	<theme id="whiteboard" name="Whiteboard Animation" thumb="" cc_theme_id="whiteboard" col="2"/>
-	<theme id="infographics" name="Video Infographics" thumb="" cc_theme_id="infographics" col="2"/>
+	<theme id="infographics" name="Video Infographics" thumb="" col="2"/>
 	<theme id="commoncraft" name="Common Craft" thumb="" col="2"/>
 	<theme id="sticklybiz" name="Stickly Business" thumb="" cc_theme_id="infographics" col="2"/>
 	<theme id="bizmodels" name="Business Models" thumb="" col="2"/>
-	<theme id="action" name="Lil' Peepz" thumb="" cc_theme_id="cc2" col="3"/>
+	<theme id="action" name="Lil' Peepz" thumb="" col="3"/>
 	<theme id="chibi" name="Chibi Peepz" thumb="" col="3"/>
 	<theme id="space" name="Space Peepz" thumb="" col="3"/>
 	<theme id="animal" name="Lil' Petz" thumb="" col="3"/>
-	<theme id="ninja" name="Chibi Ninjas" thumb="" cc_theme_id="ninja" col="3"/>
+	<theme id="ninja" name="Chibi Ninjas" thumb="" col="3"/>
 	<theme id="vietnam" name="Jungle Warfare" thumb="" col="3"/>
 	<theme id="retro" name="Cartoon Classics" thumb="ann-stand.swf" col="5"/>
 	<theme id="stick" name="Stick Figure" thumb="" col="5"/>
