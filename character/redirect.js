@@ -39,7 +39,7 @@ module.exports = function (req, res, url) {
 		}
 		default: {
 			var type = theme == "business" ?
-					bfTypes[url.query.type || ""] || "": url.query.type |theme == "whiteboard" ?
+					bfTypes[url.query.type || ""] || "": url.query.type | theme == "whiteboard" ?
 					wbTypes[url.query.type || ""] || "": url.query.type || defaultTypes[theme] || "";
 			redirect = `/cc?themeId=${theme}&bs=${type}`;
 			break;

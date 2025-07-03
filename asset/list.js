@@ -11,12 +11,12 @@ const http = require("http");
 async function listAssets(data, makeZip) {
 	var xmlString;
 	switch (data.type) {
-		case "char": {
+			case "char": {
 			const chars = await asset.chars(data.themeId);
 			xmlString = `${header}<ugc more="0">${chars
 				.map(
 					(v) =>
-						`<char id="${v.id}" name="Untitled" cc_theme_id="${v.theme}" thumbnail_url="http://localhost:4343/char_thumbs/${v.id}.png" copyable="Y"><tags/></char>`
+						`<char id="${v.id}" name="Untitled" cc_theme_id="${v.theme}" thumbnail_url="/char_thumbs/${v.id}.png" copyable="Y"><tags/></char>`
 				)
 				.join("")}</ugc>`;
 			break;
@@ -39,15 +39,35 @@ async function listAssets(data, makeZip) {
 		case "movie": {
 			files = starter.list()
 			xmlString = `${header}<ugc more="0">${files
-				.map((v) =>`<movie id="${v.id}" path="/_SAVED/${v.id}" numScene="1" title="${v.name}" thumbnail_url="/starter_thumbs/${v.id}.png"><tags></tags></movie>`)
+				.map((v) =>`<movie id="${v.id}" path="/_SAVED/${v.id}" numScene="1" title="Untitled" thumbnail_url="/starter_thumbs/${v.id}.png"><tags></tags></movie>`)
 				.join("")}</ugc>`;
 			break;
 		}
-		case "prop":
-		default: {
+		case "effect": {
+			files = asset.list(data.movieId, "effect");
+			xmlString = `${header}<ugc more="0">${files
+				.map((v) =>`<effect subtype="0" id="${v.id}" name="${v.name}" enable="Y"/>`)
+				.join("")}</ugc>`;
+			break;
+		}
+		case "prop": {
 			files = asset.list(data.movieId, "prop");
 			xmlString = `${header}<ugc more="0">${files
-				.map((v) =>`<prop subtype="0" id="${v.id}" name="${v.name}" enable="Y" holdable="0" headable="0" placeable="1" facing="left" width="0" height="0" duration="0"/>`)
+				.map((v) =>`<prop subtype="0" id="${v.id}" name="${v.name}" enable="Y" holdable="0" headable="0" wearable="0" placeable="1" facing="left" width="0" height="0" duration="0" asset_url="${process.env.PROPS_FOLDER}/${v.id}"/>`)
+				.join("")}</ugc>`;
+			break;
+		}
+		default: {
+			xmlString = `${header}<ugc more="0"></ugc>`;
+			break;
+		}
+	}
+	
+	switch (data.subtype) {
+		case "video": {
+			files = asset.list(data.movieId, "video");
+			xmlString = `${header}<ugc more="0">${files
+				.map((v) =>`<prop subtype="video" id="${v.id}" name="${v.name}" enable="Y" holdable="0" headable="0" wearable="0" placeable="1" facing="left" width="10" height="10" thumbnail_url=""/>`)
 				.join("")}</ugc>`;
 			break;
 		}
@@ -74,10 +94,8 @@ async function listAssets(data, makeZip) {
 					fUtil.addToZip(zip, `${file.mode}/${file.id}`, buffer);
 					break;
 				}
-				case "effect":
 				case "prop": {
-					const buffer = asset.load(data.movieId, file.id);
-					fUtil.addToZip(zip, `${file.mode}/${file.id}`, buffer);
+					fUtil.addToZip(zip, `${file.mode}/${file.id}`, fs.readFileSync(`${process.env.PROPS_FOLDER}/${file.id}`));
 					break;
 				}
 			}
@@ -98,6 +116,12 @@ module.exports = function (req, res, url) {
 	var makeZip = false;
 	switch (url.pathname) {
 		case "/goapi/getUserAssets/":
+		case "/goapi/getCommunityAssets/":
+		case "/api_v2/assets/team":
+		case "/api_v2/assets/shared":
+		case "/goapi/getSysTemplates/":
+		case "/goapi/getSysTemplateAttributes/":
+		case "/goapi/updateSysTemplateAttributes/":
 			makeZip = true;
 			break;
 		case "/goapi/getUserAssetsXml/":
@@ -111,7 +135,7 @@ module.exports = function (req, res, url) {
 			var q = url.query;
 			if (q.movieId && q.type) {
 				listAssets(q, makeZip).then((buff) => {
-					const type = makeZip ? "text/xml" : "application/zip";
+					const type = makeZip ? "application/zip" : "text/xml";
 					res.setHeader("Content-Type", type);
 					res.end(buff);
 				});
@@ -122,7 +146,7 @@ module.exports = function (req, res, url) {
 			loadPost(req, res)
 				.then(([data]) => listAssets(data, makeZip))
 				.then((buff) => {
-					const type = makeZip ? "text/xml" : "application/zip";
+					const type = makeZip ? "application/zip" : "text/xml";
 					res.setHeader("Content-Type", type);
 					if (makeZip) res.write(base);
 					res.end(buff);
