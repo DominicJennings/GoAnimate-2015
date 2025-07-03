@@ -54,6 +54,13 @@ module.exports = function (req, res, url) {
 				.then((b) => res.end(Buffer.concat([base, b])))
 				.catch(() => res.end("1"));
 			return true;
+				}
+				case "/ajax/deleteStarter/":
+				case "/ajax/deleteChar/":
+				case "/ajax/deleteMovie/": {
+					movie.delete(url.query.movieId);
+					movie.deleteThumb(url.query.movieId);
+					return true;
 		}
 		default:
 			return;
