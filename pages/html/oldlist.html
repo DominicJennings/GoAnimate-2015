@@ -3,15 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="icon" href="../../favicon.ico" type="image/png">
-	<title>Old Video List On GoAnimate</title>
-	<meta name="description" content="GoAnimate's Video List">
+	<title>Old Video List On GoAnimate 2015</title>
+	<meta name="description" content="GoAnimate 2015's Video List">
 	<link rel="stylesheet" type="text/css" href="../css/oldglobal.css">
 </head>
 <body>
 
 <header>
 	<div>
-	<a href="/">
+	<a href="/" target="_blank">
 		<h1 style="margin:0"><img id="logo" src="../img/list_logo.png" alt="GoAnimate"/></h1>
 		<div id="headbuttons">
 			<a class="button_small" onclick="document.getElementById('file').click()">UPLOAD A MOVIE</a>
@@ -34,7 +34,7 @@
 					<a href="/cc?themeId=cc2&bs=default">Lil Peepz</a>
 				</menu>
 			</div>
-			<a href="/pages/html/create.html" class="button_big">MAKE A VIDEO</a>
+			<a href="/pages/html/create.html" target="_blank" class="button_big">MAKE A VIDEO</a>
 		</div>
 	</div>
 </header>
@@ -94,7 +94,7 @@
 			const tbl = json[c];
 			const date = tbl.date.substr(0, 10) + ' ' + tbl.date.substr(11);
 			tbody.insertAdjacentHTML('beforeend',
-				'<tr><td><img src="/movie_thumbs/' + tbl.id + '"></td><td><div>' + tbl.title + '</div><div>' + tbl.durationString + '</div></div></td><td><span>' + date.match(/./g).join('</span><span>') + '</span></td><td><a href="javascript:;" onclick="popup(\'' + tbl.id + '\')"></a><a href="/go_full?movieId=' + tbl.id + '"></a><a href="/movies/' + tbl.id + '.xml" download="' + tbl.title + '"></a></td></tr>');
+				'<tr><td><img src="/movie_thumbs/' + tbl.id + '"></td><td><div>' + tbl.title + '</div><div>' + tbl.durationString + '</div></div></td><td><span>' + date.match(/./g).join('</span><span>') + '</span></td><td><a href="javascript:;" onclick="popup(\'' + tbl.id + '\')"></a><a href="/go_full?movieId=' + tbl.id + '" target="_blank" "><a href="/movies/' + tbl.id + '.xml" download="' + tbl.title + '"></a></td></tr>');
 		}
 	}
 
@@ -106,7 +106,7 @@
 	}
 
 	function popup(id) {
-		window.open('/player?movieId=' + id, 'MsgWindow', 'width=1280,height=720,left=' + (screen.width / 2 - 640) + ',top=' + (screen.height / 2 - 360));
+		window.open('/player?movieId=' + id);
 	}
 </script>
 
